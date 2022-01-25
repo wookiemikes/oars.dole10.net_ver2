@@ -1,0 +1,6 @@
+[13-Sep-2021 07:11:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/d0l310/oars.dole10.net/index.php:9) in /home/d0l310/oars.dole10.net/index_prereg1.php on line 8
+[13-Sep-2021 08:12:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/d0l310/oars.dole10.net/index.php:9) in /home/d0l310/oars.dole10.net/index_prereg1.php on line 8
+[13-Sep-2021 08:16:38 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/d0l310/oars.dole10.net/index.php:9) in /home/d0l310/oars.dole10.net/index_prereg1.php on line 8
+[13-Sep-2021 08:21:48 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/d0l310/oars.dole10.net/index.php:9) in /home/d0l310/oars.dole10.net/index_prereg1.php on line 8
+[13-Sep-2021 08:41:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/d0l310/oars.dole10.net/index.php:9) in /home/d0l310/oars.dole10.net/index_prereg1.php on line 8
+[14-Sep-2021 00:36:36 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/d0l310/oars.dole10.net/index.php:9) in /home/d0l310/oars.dole10.net/index_prereg1.php on line 8
