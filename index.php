@@ -49,7 +49,9 @@ require 'indextest.php';
 if (isset($_POST['aep_prereg_company'])) { //user registering
     $userid = "";
     $_SESSION['company_email'] = $_POST["company_email"];
+    $_SESSION['comp_reg_no'] = $_POST["comp_reg_no"];
     $_SESSION['company_pwd'] = $_POST["company_pwd"];
+    $_SESSION['ein'] = $_POST["ein"];
     require 'index_prereg1.php';
 }
 
@@ -237,7 +239,7 @@ if (isset($_POST['aep_prereg_company'])) { //user registering
             </div>
         </section><!-- End About Section -->
 
-        <!--Modal Register Individual-->
+        <!--Modal Register Company-->
 
         <div class="modal fade" id="modalCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -263,7 +265,7 @@ if (isset($_POST['aep_prereg_company'])) { //user registering
                             </div>
                             <br>
                             <div class="col-md-12">
-                                <input type="hidden" class="form-control" name="id_diff" id="id_diff" value="<?php echo $output;?>" readonly>
+                                <input type="hidden" class="form-control" name="comp_reg_no" id="comp_reg_no" value="<?php echo $output;?>" readonly>
                                 <div class="invalid-feedback">
                                     Establishment Name cannot be blank.
                                 </div>
@@ -271,6 +273,11 @@ if (isset($_POST['aep_prereg_company'])) { //user registering
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <input type="email" class="form-control form-control-user" name="company_email" id="exampleFirstName" placeholder="Email (Preferably Company Email)" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user" name="ein" id="exampleFirstName" placeholder="Rule 1020 EIN" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -299,64 +306,6 @@ if (isset($_POST['aep_prereg_company'])) { //user registering
             </div>
         </div>
 
-        <!--Company Register>
-        <div class="modal fade" id="modalLoginCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Company Login</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h5 class="card-title text-center">Sign In</h5>
-                        <form class="form-signin" action="index.php" method="post">
-
-
-                    </div>
-                    <div class="modal-footer">
-
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div-->
-
-        <!--Modal Company Registration>
-        <div class="modal fade" id="modalIndividual" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle"><img src="img/lglogo.png" style="margin: 2px 10px 2px 0px;" alt="" height="20px" width="20px">Register Individual Account</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form class="user" action="index.php" method="post">
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <div class="col-sm-12 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" name="indiv_uname" id="exampleFirstName" placeholder="Email (Preferably Company Email)">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" name="indiv_pwd">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" name="aep_prereg_individual" class="btn btn-primary btn-user btn-block" placeholder="Register Account">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div-->
 
 
     </main><!-- End #main -->

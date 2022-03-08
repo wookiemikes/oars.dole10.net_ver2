@@ -1,28 +1,32 @@
 <?php
 
 //$mysqli = new mysqli('localhost', 'd0l310_aep', 'd0l310_aep', 'd0l310_aep');
-$mysqli = new mysqli("localhost", "root", "", "d0l310_aep");
+$mysqli = new mysqli("localhost", "root", "", "d0l310_aepdb");
 if (isset($_POST['comp_register'])) {
-    $company_id = $_POST['company_id'];
-    $company_name = $_POST['company_name'];
-    $company_address = $_POST['company_address'];
-    $company_contact = $_POST['company_contact'];
-    $company_person = $_POST['company_person'];
-    $company_email = $_POST['company_email'];
-    $nature_of_business = $_POST['nature_of_business'];
-    $ein = $_POST['ein'];
-    $date_registered = date("Y-m-d");
+    $aca_reg_no = $_POST['aca_reg_no'];
+    $acd_reg_no = $_POST['acd_reg_no'];
+    $acd_comp_name = $_POST['acd_comp_name'];
+    $acd_st = $_POST['acd_st'];
+    $acd_prov = $_POST['acd_prov'];
+    $acd_muni = $_POST['acd_muni'];
+    $acd_owner = $_POST['acd_owner'];
+    $acd_position = $_POST['acd_position'];
+    $acd_contact_no = $_POST['acd_contact_no'];
+    $acd_email = $_POST['acd_email'];
+    $acd_nob = $_POST['acd_nob'];
 
-    $inserta = $mysqli->query("INSERT INTO `d0l310_aep` . `aep_company` SET
-        company_id = '".$company_id."',
-        company_name = '" . $company_name . "',
-        company_address = '" . $company_address . "',
-        company_contact = '" . $company_contact . "',
-        company_person = '" . $company_person . "',
-        company_email = '" . $company_email . "',
-        nature_of_business = '" . $nature_of_business . "',
-        ein = '".$ein."',
-        date_registered = '" . $date_registered . "'");
+    $inserta = $mysqli->query("INSERT INTO `d0l310_aepdb` . `aep_comp_details_tbl` SET
+        aca_reg_no = '" . $aca_reg_no . "',
+        acd_reg_no = '" . $acd_reg_no . "',
+        acd_comp_name = '" . $acd_comp_name . "',
+        acd_st = '" . $acd_st . "',
+        acd_prov = '" . $acd_prov . "',
+        acd_muni = '" . $acd_muni . "',
+        acd_owner = '" . $acd_owner . "',
+        acd_position = '".$acd_position."',
+        acd_contact_no = '" . $acd_contact_no . "',
+        acd_email = '" . $acd_email . "',
+        acd_nob = '" . $acd_nob . "'");
 
 
     if (mysqli_query($connect, $inserta)) {

@@ -2,6 +2,6 @@
 $servername = "localhost";
 $username = "root";
 $password="";
-$db = "d0l310_aep";
+$db = "d0l310_aepdb";
 //Establish Connnecion
 $connect = new mysqli($servername,$username,$password,$db) or die($mysqli->error);

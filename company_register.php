@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION["company_email"] == "" && $_SESSION["company_pwd"] == "") {
+if ($_SESSION["aca_email"] == "" && $_SESSION["aca_pw"] == "" && $_SESSION["comp_reg_no"] == "") {
     session_destroy();
     session_unset();
     header("Location: index.php");
@@ -10,7 +10,8 @@ if ($_SESSION["company_email"] == "" && $_SESSION["company_pwd"] == "") {
 
 require 'db/server.php';
 include "company_register1.php"; 
-require 'company_regtest.php'; ?>
+require 'company_regtest.php';
+include "address-scripts.php";?>
 
 
 <!doctype html>
@@ -75,7 +76,8 @@ require 'company_regtest.php'; ?>
 
                     <input type="hidden" name="submits" value="Submit" />
                     <input type="hidden" name="user_name" value="<?php echo $_SESSION['company_email']; ?>" />
-                    <input type="text" class="form-control" name="company_id" id="company_id" value="<?php echo $output;?>" readonly>
+                    <input type="hidden" name="aca_reg_no" value="<?php echo $_SESSION['comp_reg_no']; ?>" />
+                    <input type="hidden" class="form-control" name="acd_reg_no" id="acd_reg_no" value="<?php echo $output;?>" readonly>
 
                     <h4 class="mb-3"><b>I. COMPANY INFORMATION</b></h4>
                     <div class="col-md-12">
@@ -85,7 +87,7 @@ require 'company_regtest.php'; ?>
                             </div>
                             <div class="col-md-12">
 
-                                <input type="text" class="form-control" id="firstName" name="company_name" placeholder="Enter Company Name" value="" required>
+                                <input type="text" class="form-control" id="firstName" name="acd_comp_name" placeholder="Enter Company Name" value="" required>
                                 <div class="invalid-feedback">
                                     This is required.
                                 </div>
@@ -95,8 +97,8 @@ require 'company_regtest.php'; ?>
                         <br>
                         <div class="row">
                             <div class="col-md-12">
-                                <h6>FULL ADDRESS:</h6>
-                                <input type="text" class="form-control" id="firstName" name="company_address" placeholder="Lot # / Street / Barangay / City or Town / Province" value="" required>
+                                <h6>FULL STREET ADDRESS:</h6>
+                                <input type="text" class="form-control" id="firstName" name="acd_st" placeholder="Lot # / Street / Barangay " value="" required>
                                 <div class="invalid-feedback">
                                     This is required.
                                 </div>
@@ -105,15 +107,36 @@ require 'company_regtest.php'; ?>
                         <br>
                         <div class="row">
                             <div class="col-md-6">
+                                <h6>Provincial Office Under (Province):</h6>
+                                    <select class="form-control" name="acd_prov" id="acd_prov" onchange="populate(this.id,'municipality')" required>
+                                        <option value="">Choose Province..</option>
+                                        <option value="Bukidnon Field Office">Bukidnon Field Office</option>
+                                        <option value="Camiguin Field Office">Camiguin Field Office</option>
+                                        <option value="Cagayan de Oro City Field Office">Cagayan de Oro City Field Office</option>
+                                        <option value="Lanao Del Norte Field Office">Lanao Del Norte Field Office</option>
+                                        <option value="Misamis Oriental Field Office">Misamis Oriental Field Office</option>
+                                        <option value="Misamis Occidental Field Office">Misamis Occidental Field Office</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>City / Municipality:</h6>
+                                    <select class="form-control" name="acd_muni" id="municipality" required>
+                                        <option value="" disabled selected hidden>Choose Municipality</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <h6>CONTACT NO.:</h6>
-                                <input type="tel" class="form-control" id="firstName" placeholder="09xxxxxxxxx" name="company_contact" value="" required>
+                                <input type="tel" class="form-control" id="firstName" placeholder="09xxxxxxxxx" name="acd_contact_no" value="" required>
                                 <div class="invalid-feedback">
                                     This is required.
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <h6>EMAIL ADDRESS:</h6>
-                                <input type="text" class="form-control" id="firstName" name="company_email" placeholder="email@email.com" value="<?php echo $_SESSION['company_email']; ?>" readonly>
+                                <input type="text" class="form-control" id="firstName" name="acd_email" placeholder="email@email.com" value="<?php echo $_SESSION['company_email']; ?>" readonly>
                                 <div class="invalid-feedback">
                                     This is required.
                                 </div>
@@ -123,15 +146,15 @@ require 'company_regtest.php'; ?>
                         <br>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <h6>CONTACT PERSON:</h6>
-                                <input type="text" class="form-control" id="firstName" placeholder="Contact Person Name" name="company_person" value="" required>
+                                <h6>NAME OF COMPANY CONTACT PERSON:</h6>
+                                <input type="text" class="form-control" id="firstName" placeholder="Contact Person Name" name="acd_owner" value="" required>
                                 <div class="invalid-feedback">
                                     This is required.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <h6>ESTABLISHMENT IDENTIFICATION NUMBER (EIN (RULE 1020)):</h6>
-                                <input type="text" class="form-control" id="firstName" placeholder="ESTABLISHMENT REGISTRATION NUMBER" name="ein" value="" required>
+                                <h6>POSITION OF COMPANY CONTACT PERSON:</h6>
+                                <input type="text" class="form-control" id="firstName" placeholder="Position of Contact Person" name="acd_position" value="" required>
                                 <div class="invalid-feedback">
                                     This is required.
                                 </div>
@@ -140,7 +163,7 @@ require 'company_regtest.php'; ?>
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <h6>NATURE OF BUSINESS:</h6>
-                                <select name="nature_of_business" class="form-control" id="firstName" required>
+                                <select name="acd_nob" class="form-control" id="firstName" required>
                                     <option value="">Choose One..</option>
                                     <option value="Agriculture, forestry and fishing">Agriculture, forestry and fishing</option>
                                     <option value="Mining and quarrying">Mining and quarrying</option>

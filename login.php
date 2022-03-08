@@ -7,19 +7,19 @@
 		$dbusername = " ";
 		$dbpassword = " ";
 		$_SESSION['company_email'] = "";
-	$query = "SELECT * FROM `d0l310_aep` . `aep_company_accounts` WHERE company_email = '". $comp_login_uname. "' AND company_pwd = '".$comp_login_pwd."' ";
+	$query = "SELECT * FROM `d0l310_aepdb` . `aep_comp_account_tbl` WHERE aca_email = '".$comp_login_uname."' AND aca_pw = '".$comp_login_pwd."' ";
 	$result = mysqli_query($connect,$query);
 	if (!empty($query)){
 		while ($row = mysqli_fetch_assoc($result)) {
-			$comp_loginuname = $row['company_email'];
-			$comp_loginpwd = $row['company_pwd'];
+			$comp_email = $row['aca_email'];
+			$comp_pw = $row['aca_pw'];
 			}
-			if ($comp_login_uname== $comp_loginuname&& $comp_login_pwd== $comp_loginpwd){
-                $theform = "SELECT company_email from aep_company where company_email = '". $comp_loginuname."'";
+			if ($comp_login_uname == $comp_email && $comp_login_pwd == $comp_pw){
+                $theform = "SELECT aca_email from aep_comp_account_tbl where aca_email = '". $comp_email."'";
                 
 				$result1 = mysqli_query($connect,$theform);
 				while ($row = mysqli_fetch_assoc($result1)) {
-					$_SESSION['company_email'] = $row['company_email'];
+					$_SESSION['aca_email'] = $row['aca_email'];
 					
 				}
 				$_SESSION['profile_status'] = "Logged In!";
@@ -30,8 +30,8 @@
 			}
 	}
 	else{
-		$_SESSION["company_email"] =" ";
-		$_SESSION["company_pwd"] =" ";
+		$_SESSION["aca_email"] =" ";
+		$_SESSION["aca_pw"] =" ";
 		echo "<script>alert('Username or Password Doesn't exist!')</script>";
 	}
 }
