@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION["company_email"] == "" && $_SESSION["company_pwd"] == "") {
+if ($_SESSION["aca_email"] == "" && $_SESSION["aca_pw"] == "") {
     session_destroy();
     session_unset();
     header("Location: index.php");

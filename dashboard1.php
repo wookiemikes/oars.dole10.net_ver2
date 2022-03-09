@@ -1,9 +1,9 @@
-<?php 
+    <?php 
 include 'login.php';
 $true = ",disabled: true;";
 $readonly = "readonly"; /*All input type set to readonly*/
 $disabled = "disabled"; /*Dropdaown and Date are Disabled*/
-$sql_prof = "SELECT * FROM aep_company where company_email ='" . $_SESSION['company_email'] . "'";
+$sql_prof = "SELECT * FROM aep_comp_details_tbl where acd_email ='" . $_SESSION['aca_email'] . "'";
 $result = mysqli_query($connect,$sql_prof);
 while ($list = mysqli_fetch_assoc($result)){
     $company_id = $list['company_id'];
